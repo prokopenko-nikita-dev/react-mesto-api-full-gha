@@ -25,4 +25,4 @@ jobs:
     - name: Get testing lib
       run: set -eu && git clone https://github.com/girolle/open-tests.git
     - name: Run test
-      run: node open-tests/run.js
+      run: ./open-tests/run.sh.x
