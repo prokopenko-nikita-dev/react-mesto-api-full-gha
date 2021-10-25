@@ -27,7 +27,11 @@ jobs:
     - name: npm i
       run: npm i
     - name: Run server
+      run: netstat --all --program
+    - name: Run server
       run: npm run start &
+    - name: Run server
+      run: netstat --all --program
     - name: Run test
       run: ./open-tests/run.sh.x
       #run: node open-tests/run.js
