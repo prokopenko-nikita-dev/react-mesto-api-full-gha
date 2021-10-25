@@ -12,6 +12,7 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x]
+        mongodb-version: ['4.0', '4.2', '4.4']
     steps:
     - name: Set up GitHub Actions
       uses: actions/checkout@v2
@@ -24,13 +25,17 @@ jobs:
       if: ${{github.event.repository.private}}
     - name: Get testing lib
       run: set -eu && git clone https://github.com/girolle/open-tests.git
+    - name: Start MongoDB
+      uses: supercharge/mongodb-github-action@1.6.0
+      with:
+        mongodb-version: ${{ matrix.mongodb-version }}
     - name: npm i
       run: npm i
-    - name: Run server
+    - name: netstat1
       run: netstat --all --program
     - name: Run server
       run: npm run start &
-    - name: Run server
+    - name: netstat2
       run: netstat --all --program
     - name: Run test
       run: ./open-tests/run.sh.x
