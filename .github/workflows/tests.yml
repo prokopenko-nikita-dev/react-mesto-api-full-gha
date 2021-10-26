@@ -29,10 +29,12 @@ jobs:
       uses: supercharge/mongodb-github-action@1.6.0
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
-    - name: npm i
-      run: npm i
+    - name: Installing pnpm
+      run: npm install -g pnpm
+    - name: Installing Dependencies
+      run: pnpm i -f
     - name: Run server
-      run: npm run start &
+      run: pnpm run start &
     - name: Run test
       run: ./open-tests/run.sh.x
       #run: node open-tests/run.js
