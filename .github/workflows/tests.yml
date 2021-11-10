@@ -24,7 +24,7 @@ jobs:
       run: exit 1
       if: ${{github.event.repository.private}}
     - name: Get testing lib
-      run: set -eu && git clone https://github.com/girolle/open-tests.git
+      run: set -eu && git clone https://github.com/Yandex-Practicum/web-autotest-public.git
     - name: Start MongoDB
       uses: supercharge/mongodb-github-action@1.6.0
       with:
@@ -36,5 +36,4 @@ jobs:
     - name: Run server
       run: pnpm run start &
     - name: Run test
-      run: ./open-tests/run.sh.x
-      #run: node open-tests/run.js
+      run: ./web-autotest-public/run.sh.x
