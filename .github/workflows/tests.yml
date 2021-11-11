@@ -30,10 +30,10 @@ jobs:
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
     - name: Installing pnpm
-      run: npm install -g pnpm
+      run: cd backend&&npm install -g pnpm
     - name: Installing Dependencies
-      run: pnpm i -f
+      run: cd backend&&pnpm i -f
     - name: Run server
-      run: pnpm run start &
+      run: cd backend&&pnpm run start &
     - name: Run test
-      run: ./web-autotest-public/run.sh.x
+      run: ./web-autotest-public/run15.sh.x
