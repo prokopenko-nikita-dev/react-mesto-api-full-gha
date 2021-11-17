@@ -36,4 +36,4 @@ jobs:
     - name: Run server
       run: cd backend&&pnpm run start &
     - name: Run test
-      run: ./web-autotest-public/run15.sh.x
+      run: bash ./web-autotest-public/run15.sh
