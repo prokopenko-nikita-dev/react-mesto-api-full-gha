@@ -3,37 +3,39 @@ name: Tests 15 sprint
 on:
   push:
     branches:
-      - main
+      - '**'
+    tags:
+      - '**'
 
 
 jobs:
-  sprint_15:
+  test_endpoints:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
-        mongodb-version: ['4.4']
     steps:
     - name: Set up GitHub Actions
       uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js 14.x
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 14.x
     - name: Сheck if the repository is private
       run: exit 1
       if: ${{github.event.repository.private}}
     - name: Get testing lib
-      run: set -eu && git clone https://github.com/Yandex-Practicum/web-autotest-public.git
+      run: set -eu && git clone --depth 1 https://github.com/Yandex-Practicum/web-autotest-public.git
+    - name: Copy Makefile
+      run: cp ./web-autotest-public/Makefile ./Makefile
     - name: Start MongoDB
       uses: supercharge/mongodb-github-action@1.6.0
       with:
-        mongodb-version: ${{ matrix.mongodb-version }}
-    - name: Installing pnpm
-      run: cd backend&&npm install -g pnpm
+        mongodb-version: '4.4'
     - name: Installing Dependencies
-      run: cd backend&&pnpm i -f
+      run: cd backend&&npm i
     - name: Run server
-      run: cd backend&&pnpm run start &
-    - name: Run test
-      run: bash ./web-autotest-public/run15.sh
+      run: cd backend&&npm run start &
+    - name: Installing wait-port
+      run: npm install -g wait-port
+    - name: Wait for server to start
+      run: wait-port -t 30000 localhost:3000
+    - name: Run test endpoints
+      run: make proj15-test-endpoints
