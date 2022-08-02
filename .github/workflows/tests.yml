@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Set up GitHub Actions
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Use Node.js 14.x
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: 14.x
     - name: Сheck if the repository is private
@@ -27,15 +27,26 @@ jobs:
       run: cp ./web-autotest-public/Makefile ./Makefile
     - name: Installing Dependencies
       run: cd backend&&npm i
+    - name: Cache test dependencies
+      id: cache
+      uses: actions/cache@v3
+      with:
+        path: ./web-autotest-public
+        key: modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+    - name: Install test dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: |
+          npm install -g pnpm
+          pnpm i --frozen-lockfile --prefix web-autotest-public/
     - name: Run test config
       run: make proj15-test-config
   test_endpoints:
     runs-on: ubuntu-latest
     steps:
     - name: Set up GitHub Actions
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Use Node.js 14.x
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: 14.x
     - name: Сheck if the repository is private
@@ -57,5 +68,16 @@ jobs:
       run: npm install -g wait-port
     - name: Wait for server to start
       run: wait-port -t 30000 localhost:3000
+    - name: Cache test dependencies
+      id: cache
+      uses: actions/cache@v3
+      with:
+        path: ./web-autotest-public
+        key: modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+    - name: Install test dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: |
+          npm install -g pnpm
+          pnpm i --frozen-lockfile --prefix web-autotest-public/
     - name: Run test endpoints
       run: make proj15-test-endpoints
