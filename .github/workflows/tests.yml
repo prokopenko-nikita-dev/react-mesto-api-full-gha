@@ -62,12 +62,10 @@ jobs:
         mongodb-version: '4.4'
     - name: Installing Dependencies
       run: cd backend&&npm i
-    - name: Run server
-      run: cd backend&&npm run start &
     - name: Installing wait-port
       run: npm install -g wait-port
-    - name: Wait for server to start
-      run: wait-port -t 30000 localhost:3000
+    - name: Run server
+      run: cd backend&&npm run start & wait-port -t 30000 localhost:3000
     - name: Cache test dependencies
       id: cache
       uses: actions/cache@v3
