@@ -65,7 +65,7 @@ jobs:
     - name: Installing wait-port
       run: npm install -g wait-port
     - name: Run server
-      run: cd backend&&npm run start & wait-port -t 30000 localhost:3000
+      run: npm --prefix backend/ run start & wait-port -t 30000 localhost:3000
     - name: Cache test dependencies
       id: cache
       uses: actions/cache@v3
