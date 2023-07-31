@@ -18,6 +18,12 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000, BASE_PATH } = process.env;
 
+const corsOption = {
+  origin: ['https://mesto.nomoreparties.co/v1/cohort-64', 'https://mesto.nomoreparties.co/v1/cohort-64', 'https://mesto.nomoreparties.co/v1/cohort-64', 'https://mesto.nomoreparties.co/v1/cohort-64', 'http://localhost:3001', 'http://localhost:3000'],
+  credentials: true,
+  // preflightContinue: true,
+};
+
 const app = express();
 app.use(cors(corsOption));
 const limiter = rateLimit({
