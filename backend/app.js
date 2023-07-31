@@ -67,8 +67,10 @@ async function main() {
   console.log('Connected to db');
   await app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
-    console.log('Ссылка на сервер');
-    console.log(BASE_PATH);
+    if (BASE_PATH) {
+      console.log('Ссылка на сервер');
+      console.log(BASE_PATH);
+    }
   });
 }
 
