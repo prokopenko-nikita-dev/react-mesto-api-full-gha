@@ -1,0 +1,13 @@
+.profile-menu__email {
+    color: #fff;
+    margin: 0 24px 0 0;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 500;
+  }
+  
+  @media (max-width: 633px) {
+    .profile-menu__email {
+      margin: 0;
+    }
+  }

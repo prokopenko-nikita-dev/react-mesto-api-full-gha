@@ -1,0 +1,11 @@
+.popup__content {
+    background-color: #fff;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.popup__content .popup__form-group {
+    position: relative;
+}

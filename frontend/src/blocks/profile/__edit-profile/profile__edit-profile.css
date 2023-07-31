@@ -1,0 +1,25 @@
+.profile__edit-profile {
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #fff;
+    background-color: #000;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: center;
+    transition: opacity 0.3s ease;
+    flex-shrink: 0;
+    background-image: url(../../../image/Edit_Button.svg);
+}
+
+.profile__edit-profile:hover {
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 710px) {
+    .profile__edit-profile {
+        width: 18px;
+        height: 18px;
+    }
+}

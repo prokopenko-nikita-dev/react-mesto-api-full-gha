@@ -1,0 +1,24 @@
+.popup__input {
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    display: block;
+    outline: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: black;
+    height: 35px;
+    padding: 0;
+    width: 100%;
+}
+
+.popup__input_invalid {
+    border-bottom: 1px solid #e53e3e;
+    color: #e53e3e;
+    outline: none;
+  }

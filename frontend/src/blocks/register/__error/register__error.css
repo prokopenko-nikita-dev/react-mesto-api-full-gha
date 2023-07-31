@@ -1,0 +1,23 @@
+.register__error {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FF0000;
+    margin: 5px 0 0 0;
+    box-sizing: border-box;
+    min-height: 30px;
+  }
+  
+  .register__error:last-of-type {
+    margin: 5px 0 105px 0;
+  }
+  
+  @media screen and (max-width: 373px) {
+    .register__error {
+      min-height: 20px;
+    }
+  
+    .register__error:last-of-type {
+      margin: 5px 0 75px 0;
+    }
+  }

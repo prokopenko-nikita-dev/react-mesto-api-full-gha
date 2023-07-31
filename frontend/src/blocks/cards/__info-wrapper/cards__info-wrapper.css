@@ -1,0 +1,9 @@
+.cards__info-wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 35px;
+    justify-content: center;
+    width: 22px;
+
+}

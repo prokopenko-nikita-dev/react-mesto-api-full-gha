@@ -1,0 +1,15 @@
+.cards__container {
+    width: 282px;
+    height: 282px;
+    object-fit: cover;
+    box-sizing: border-box;
+    object-position: 0 0;
+    padding: 0;
+    display: flex;
+    margin: 0;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}

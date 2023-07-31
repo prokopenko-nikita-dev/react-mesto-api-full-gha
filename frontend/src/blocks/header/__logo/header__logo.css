@@ -1,0 +1,22 @@
+.header__logo {
+    display: block;
+    width: 142px;
+    height: 33px;
+    background-image: url('../../../image/Header_logo.svg');
+    cursor: pointer;
+  }
+  
+  @media (max-width: 1080px) {
+    .header__logo {
+      width: 104px;
+      height: 25px;
+      margin-left: 30px;
+      background-size: 104px 25px;
+    }
+  }
+  
+  @media (max-width: 633px) {
+    .header__logo {
+      align-self: flex-start;
+    }
+  }

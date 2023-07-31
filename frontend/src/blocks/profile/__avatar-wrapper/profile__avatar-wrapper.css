@@ -1,0 +1,7 @@
+.profile__avatar-wrapper {
+  border-radius: 50%;
+  cursor: pointer;
+  height: 120px;
+  position: relative;
+  width: 120px;
+}

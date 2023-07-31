@@ -1,0 +1,11 @@
+.popup__container-img {
+    display: flex;
+    flex-direction: column;
+    max-width: 75vw;
+    max-height: 75vh;
+    padding: 0;
+    background-size: cover;
+    background-color: transparent;
+    border-radius: 0;
+    gap: 0;
+}

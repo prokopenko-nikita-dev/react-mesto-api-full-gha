@@ -1,0 +1,16 @@
+.cards__info-like_deactive {
+    width: 22px;
+    height: 19px;
+    background-image:  url(../../../../image/deactive.svg);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    box-sizing: border-box;
+    z-index: 0;
+    cursor: pointer;
+    transition: opacity 0.4s;
+}
+
+.cards__info-like_deactive:hover { 
+    opacity: 0.5;
+} 

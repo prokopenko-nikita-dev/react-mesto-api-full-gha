@@ -1,0 +1,11 @@
+.elements {
+    width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+    .elements {
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,16 @@
+.register__signin {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+  }
+  
+  .register__signin p{
+    margin: 15px 0 0 0;
+  }
+  
+  @media screen and (max-width: 373px) {
+    .register__signin p{
+      margin: 20px 0 0 0;
+    }
+  }

@@ -1,0 +1,13 @@
+.page__container {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Inter', Arial, sans-serif;
+    min-width: 320px;
+    max-width: 882px;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }

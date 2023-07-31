@@ -1,0 +1,20 @@
+.profile__edit-prof {
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    color: #fff;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 710px) {
+    .profile__edit-prof {
+        text-align: center;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

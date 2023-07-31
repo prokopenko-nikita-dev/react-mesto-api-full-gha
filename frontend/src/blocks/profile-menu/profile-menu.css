@@ -1,0 +1,13 @@
+.profile-menu {
+    display: flex;
+  }
+  
+  @media (max-width: 633px) {
+    .profile-menu {
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+      margin-bottom: 27px;
+    }
+  }

@@ -1,0 +1,8 @@
+.popup__name {
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    color: #fff;
+    font-size: 12px;
+    line-height: 100%;
+    margin: 10px 0 0;
+    font-weight: 400;
+}

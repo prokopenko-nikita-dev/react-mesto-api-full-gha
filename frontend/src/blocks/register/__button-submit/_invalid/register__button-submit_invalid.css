@@ -1,0 +1,7 @@
+.register__button-submit_invalid {
+    cursor: default;
+    pointer-events:none;
+    background-color: #000;
+    color: rgba(255, 255, 255, .2);
+    border: 1px solid rgba(255, 255, 255, .2);
+  }
