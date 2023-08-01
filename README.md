@@ -7,7 +7,8 @@
 
 Проект доступен на виртуальной машине по адресу foxylab.nomoredomains.sbs 
 
-# Проект "Mesto фронтенд + бэкенд". Создана в рамках учебы в [Яндекс.Практикум](https://praktikum.yandex.ru/) на курсе ["Веб-разработчик"](https://praktikum.yandex.ru/web/).
+# Проект "Mesto фронтенд + бэкенд". 
+Создана в рамках учебы в [Яндекс.Практикум](https://praktikum.yandex.ru/) на курсе ["Веб-разработчик"](https://praktikum.yandex.ru/web/).
 
 ## Описание:
 

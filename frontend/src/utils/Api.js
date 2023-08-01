@@ -78,7 +78,7 @@ class Api {
 }
 
 const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64',
+    baseUrl: 'https://api.domainname.nikitapro.nomoreparties.co',
     headers: {
         authorization: '395f55cb-af41-44d8-b340-ae79215baa0b',
         'Content-Type': 'application/json'
