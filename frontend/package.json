@@ -16,6 +16,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.21.4",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.21.4",
     "autoprefixer": "^10.4.14",
     "clean-webpack-plugin": "^4.0.0",
