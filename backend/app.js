@@ -19,7 +19,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { PORT = 3000, BASE_PATH } = process.env;
 
 const corsOption = {
-  origin: ['https://mesto.nomoreparties.co/v1/cohort-64', 'https://mesto.nomoreparties.co/v1/cohort-64', 'https://mesto.nomoreparties.co/v1/cohort-64', 'https://mesto.nomoreparties.co/v1/cohort-64', 'http://localhost:3001', 'http://localhost:3000'],
+  origin: ['https://mesto.nomoreparties.co/v1/cohort-64', 'https://mesto.nomoreparties.co/v1/cohort-64', 'https://mesto.nomoreparties.co/v1/cohort-64', 'https://mesto.nomoreparties.co/v1/cohort-64', 'http://localhost:3001', 'http://localhost:3000', 'https://domainname.nikitapro.nomoreparties.co', 'https://api.domainname.nikitapro.nomoreparties.co'],
   credentials: true,
   // preflightContinue: true,
 };
