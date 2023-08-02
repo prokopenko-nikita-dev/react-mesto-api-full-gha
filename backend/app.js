@@ -19,7 +19,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { PORT = 3000, BASE_PATH } = process.env;
 
 const corsOption = {
-  origin: ['https://mesto.nomoreparties.co/v1/cohort-64', 'https://mesto.nomoreparties.co/v1/cohort-64', 'https://mesto.nomoreparties.co/v1/cohort-64', 'https://mesto.nomoreparties.co/v1/cohort-64', 'http://localhost:3001', 'http://localhost:3000', 'https://domainname.nikitapro.nomoreparties.co/*', 'https://api.domainname.nikitapro.nomoreparties.co'],
+  origin: ['http://localhost:3000', 'https://domainname.nikitapro.nomoreparties.co', 'https://domainname.nikitapro.nomoreparties.co/*'],
   credentials: true,
   // preflightContinue: true,
 };
@@ -32,7 +32,7 @@ const limiter = rateLimit({
 });
 app.use(requestLogger);
 app.use(limiter);
-app.use(helmet());
+//app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -59,15 +59,6 @@ app.use(errorLogger);
 
 app.use(errors());
 app.use(errorHandler);
-
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  )
-  next()
-});
 
 async function main() {
   await mongoose.connect('mongodb://localhost:27017/mestodb', {
