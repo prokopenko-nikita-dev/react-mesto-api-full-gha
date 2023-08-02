@@ -67,7 +67,7 @@ app.use(function (req, res, next) {
     'Origin, X-Requested-With, Content-Type, Accept'
   )
   next()
-})
+});
 
 async function main() {
   await mongoose.connect('mongodb://localhost:27017/mestodb', {
