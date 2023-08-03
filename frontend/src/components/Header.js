@@ -18,7 +18,6 @@ const Header = (props) => {
     setIsActive(!isActive)
   }
 
-  console.log(userEmail)
   return (
     <header className="header">
       <div className="header__logo"></div>

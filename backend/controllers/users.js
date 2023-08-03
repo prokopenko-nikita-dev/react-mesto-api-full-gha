@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { HASH_LENGTH, SECRET_KEY } = require('../environment/env');
+const { NODE_ENV, SECRET_KEY, HASH_LENGTH = 10 } = process.env;
 const User = require('../models/user');
 const NotFoundError = require('../errors/notFoundError');
 const { customError } = require('../errors/customError');
@@ -37,9 +37,11 @@ const createUser = (req, res, next) => {
 
 const login = (req, res, next) => {
   const { email, password } = req.body;
+  console.log(SECRET_KEY);
 
   return User.findUserByCredentials(email, password)
     .then((user) => {
+      console.log(process.env);
       const token = jwt.sign({ _id: user._id }, SECRET_KEY, { expiresIn: '7d' });
       res.cookie('jwt', token, {
         maxAge: 3600000 * 24 * 7,

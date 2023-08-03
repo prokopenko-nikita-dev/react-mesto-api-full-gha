@@ -16,7 +16,9 @@ class Api {
         return fetch(this._baseUrl + '/cards', {
             headers: this._headers
         })
-            .then(res => { return this._getOriginalResponse(res) });
+            .then(res => { 
+                console.log(res)
+                return this._getOriginalResponse(res) });
 
     }
 
@@ -35,7 +37,9 @@ class Api {
                 name, about
             })
         })
-            .then(res => { return this._getOriginalResponse(res) })
+            .then(res => { 
+                console.log(res)
+                return this._getOriginalResponse(res) })
     }
 
     addCard(name, link) {
@@ -46,7 +50,9 @@ class Api {
                 name, link
             })
         })
-            .then(res => { return this._getOriginalResponse(res) })
+            .then(res => { 
+                console.log(res)
+                return this._getOriginalResponse(res) })
     }
 
     setUserAvatar({ avatar }) {
@@ -57,7 +63,9 @@ class Api {
                 avatar
             })
         })
-            .then(res => { return this._getOriginalResponse(res) })
+            .then(res => { 
+                console.log(res)
+                return this._getOriginalResponse(res) })
     }
 
     deleteCard(id) {
@@ -65,7 +73,9 @@ class Api {
             method: 'DELETE',
             headers: this._headers,
         })
-            .then(res => { return this._getOriginalResponse(res) })
+            .then(res => { 
+                console.log(res)
+                return this._getOriginalResponse(res) })
     }
 
     changeLikeCardStatus(id, status) {
@@ -73,14 +83,16 @@ class Api {
             method: status ? 'PUT' : 'DELETE',
             headers: this._headers,
         })
-            .then(res => { return this._getOriginalResponse(res) })
+            .then(res => { r
+                console.log(res)
+                return this._getOriginalResponse(res) })
     }
 }
 
 const api = new Api({
     baseUrl: 'https://api.domainname.nikitapro.nomoreparties.co',
     headers: {
-        authorization: '395f55cb-af41-44d8-b340-ae79215baa0b',
+        "Authorization": `Bearer ${localStorage.getItem('jwt') || " "}`,
         'Content-Type': 'application/json'
     }
 });

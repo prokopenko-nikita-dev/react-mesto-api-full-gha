@@ -163,20 +163,23 @@ function App() {
   // проверка, что пользователь уже авторизован
   const tokenCheck = useCallback(() => {
     const jwt = localStorage.getItem('jwt');
+    console.log(jwt);
 
     if (jwt) {
       setIsAuthChecking(true);
       auth.getContent(jwt)
         .then((res) => {
+          console.log(res);
           if (res) {
             setLoggedIn(true);
             setData({
-              email: res.data.email
+              email: res.email
             })
             history('/mesto');
           }
         })
-        .catch(() => history('/sign-in'))
+        .catch(() => {
+          history('/sign-in')})
         .finally(() => setIsAuthChecking(false))
     } else {
       setIsAuthChecking(false)
@@ -208,6 +211,7 @@ function App() {
   const handleLogin = ({ password, email }) => {
     return auth.authorize({ password, email })
       .then(res => {
+        console.log(res);
         if (!res || res.statusCode === 400 || res.statusCode === 401) throw new Error(`Ошибка: ${res.message}`);
         if (res.token) {
           setIsInfoTooltipPopupOpen(true);

@@ -24,8 +24,13 @@ const corsOption = {
   // preflightContinue: true,
 };
 
+const corsOptions1 ={
+  origin:'*', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200,
+}
 const app = express();
-app.use(cors(corsOption));
+app.use(cors(corsOptions1));
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // за 15 минут
   max: 100, // можно совершить максимум 100 запросов с одного IP

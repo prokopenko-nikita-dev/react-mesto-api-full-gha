@@ -1,6 +1,12 @@
 export const BASE_URL = 'https://api.domainname.nikitapro.nomoreparties.co'
 
-const responseCheck = (response) => response.ok ? response.json() : Promise.reject(`Ошибка ${response.status}`);
+const responseCheck = (response) => {
+  console.log(response)
+  if (response.ok) {
+    return response.json()
+  } 
+  return Promise.reject(`Ошибка ${response.status}`);
+}
 
 export const register = ({ password, email }) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -30,12 +36,12 @@ export const authorize = ({ password, email }) => {
     .then(responseCheck)
 };
 
-export const getContent = (token) => {
+export const getContent = () => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
+      "Authorization": `Bearer ${localStorage.getItem('jwt')}`
     }
   })
     .then(responseCheck)
