@@ -1,12 +1,6 @@
-export const BASE_URL = 'https://api.domainname.nikitapro.nomoreparties.co'
+export const BASE_URL = 'https://api.domainname.nikitapro.nomoreparties.co';
 
-const responseCheck = (response) => {
-  console.log(response)
-  if (response.ok) {
-    return response.json()
-  } 
-  return Promise.reject(`Ошибка ${response.status}`);
-}
+const responseCheck = (response) => response.ok ? response.json() : Promise.reject(`Ошибка ${response.status}`);
 
 export const register = ({ password, email }) => {
   return fetch(`${BASE_URL}/signup`, {

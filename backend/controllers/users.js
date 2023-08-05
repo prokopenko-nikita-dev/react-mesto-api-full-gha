@@ -59,6 +59,7 @@ const getUsers = (req, res) => {
       throw new NotFoundError('Запрашиваемые данные по указанному id не найдены');
     })
     .then((user) => {
+      console.log(user)
       res.send(user);
     })
     .catch((err) => {
@@ -85,6 +86,7 @@ const getUserInfo = (req, res, next) => {
       throw new NotFoundError('Запрашиваемые данные по указанному id не найдены');
     })
     .then((user) => {
+      console.log(user)
       res.send(user);
     })
     .catch((err) => {

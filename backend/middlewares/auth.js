@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
   let payload;
   try {
     const token = req.header("Authorization").split(" ")[1];
-    payload = jwt.verify(token, NODE_ENV === 'production' ? SECRET_KEY : 'dev-key');
+    payload = jwt.verify(token, SECRET_KEY);
   } catch (err) {
     throw new AuthorizationError('Необходима авторизация');
   }

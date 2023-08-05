@@ -11,7 +11,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, onC
     <main className="content page__content">
       <section className="profile content__item">
         <div className="profile__avatar-wrapper">
-          <img className="profile__avatar" src={currentUser.avatar} alt="аватарка пользователя" />
+          <img className="profile__avatar" src={currentUser.avatar} alt="" />
           <div className="profile__button-wrapper">
             <button type="button" className="profile__avatar-button" onClick={onEditAvatar}></button>
           </div>

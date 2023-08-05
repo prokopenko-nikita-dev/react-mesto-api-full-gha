@@ -1,15 +1,15 @@
 .header {
-    position: relative;
+    max-width: 880px;
+    padding: 45px 0 41px 0;
+    border-bottom: 1px solid #545454;
+    color: #ffffff;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 45px 0 41px;
-    line-height: 0;
-    border-bottom: solid 1px rgba(84, 84, 84, .7);
-  }
-  
-  @media (max-width: 1080px) {
+}
+
+@media screen and (max-width: 710px) {
     .header {
-      padding: 28px 0 32px;
+        padding: 27px 0 32px 26px;
+        margin: 0 -19px;
     }
-  }
+}

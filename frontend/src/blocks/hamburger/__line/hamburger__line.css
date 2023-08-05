@@ -1,8 +1,0 @@
-.hamburger__line {
-    display: block;
-    height: 3px;
-    width: 24px;
-    background-color: #fff;
-    transition: .2s all;
-    margin: 0 auto 6px;
-  }

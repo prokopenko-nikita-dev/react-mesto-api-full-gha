@@ -1,0 +1,7 @@
+.header__button-register {
+    color: #FFF;
+}
+
+.header__button-register:hover {
+    opacity: 0.6;
+}

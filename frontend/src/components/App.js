@@ -43,8 +43,6 @@ function App() {
   const [data, setData] = useState(initialData);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isProfileEmail, setIsProfileEmail] = useState('')
 
   const history = useNavigate();
 
@@ -106,8 +104,8 @@ function App() {
     api
       .getUser()
       .then((profileUserInfo) => {
-        setCurrentUser(profileUserInfo)
         console.log(profileUserInfo)
+        setCurrentUser(profileUserInfo)
       })
       .catch((error) => console.log(error));
   }, []);
@@ -117,12 +115,11 @@ function App() {
 
   //Лайк на карточке
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
 
     api.changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
-        const newCards = cards.map((c) => c._id === card._id ? newCard : c);
-        setCards(newCards);
+        setCards(cards => cards.map((c) => c._id === card._id ? newCard : c))
       })
       .catch((error) => console.log(error))
   }
@@ -132,8 +129,7 @@ function App() {
   function handleCardDelete(card) {
     api.deleteCard(card._id)
       .then((newCard) => {
-        const newCards = cards.filter((c) => c._id !== card._id);
-        setCards(newCards);
+        setCards(cards => cards.filter(c => c._id !== card._id))
       })
       .catch((error) => console.log(error))
   }
@@ -143,19 +139,20 @@ function App() {
     api.addCard(name, link).then((newCard) => {
 
       setCards([newCard, ...cards]);
+      closeAllPopups()
     })
       .catch((error) => console.log(error))
-      .finally(() => closeAllPopups());
   }
 
   useEffect(() => {
+    if (!loggedIn) return
     api
       .getInitialCards()
       .then((cards) => {
         setCards(cards);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [loggedIn]);
 
 
   // ---------- Функции запросов api/auth ----------
@@ -163,23 +160,21 @@ function App() {
   // проверка, что пользователь уже авторизован
   const tokenCheck = useCallback(() => {
     const jwt = localStorage.getItem('jwt');
-    console.log(jwt);
 
     if (jwt) {
       setIsAuthChecking(true);
       auth.getContent(jwt)
         .then((res) => {
-          console.log(res);
           if (res) {
             setLoggedIn(true);
+            console.log(res);
             setData({
-              email: res.email
+              email: res.data?.email ?? res.email
             })
             history('/mesto');
           }
         })
-        .catch(() => {
-          history('/sign-in')})
+        .catch(() => history('/sign-in'))
         .finally(() => setIsAuthChecking(false))
     } else {
       setIsAuthChecking(false)
@@ -194,13 +189,16 @@ function App() {
   const handleRegister = ({ password, email }) => {
     return auth.register({ password, email })
       .then(res => {
+        console.log(res)
         if (!res || res.statusCode === 400) throw new Error(`Ошибка: ${res.message}`);
         setIsInfoTooltipPopupOpen(true);
         setIsSuccess(true);
-        history.push('/sign-in')
+        history('/sign-in')
         return res;
       })
       .catch(err => {
+        console.log(err)
+        localStorage.removeItem('jwt');
         setIsInfoTooltipPopupOpen(true);
         setIsSuccess(false);
         return err;
@@ -211,7 +209,6 @@ function App() {
   const handleLogin = ({ password, email }) => {
     return auth.authorize({ password, email })
       .then(res => {
-        console.log(res);
         if (!res || res.statusCode === 400 || res.statusCode === 401) throw new Error(`Ошибка: ${res.message}`);
         if (res.token) {
           setIsInfoTooltipPopupOpen(true);
@@ -222,6 +219,7 @@ function App() {
       })
       .then(tokenCheck)
       .catch(err => {
+        localStorage.removeItem('jwt');
         setIsInfoTooltipPopupOpen(true);
         setIsSuccess(false);
         return err;
@@ -229,20 +227,20 @@ function App() {
   }
 
   // Выход из системы
-  const handleLogout = () => {
-    localStorage.removeItem('jwt');
-    setIsProfileEmail('')
-    setIsLoggedIn(false);
-    history.push('/sign-in');
-  }
+   const handleSignOut = () => {
+     localStorage.removeItem('jwt');
+     setData(initialData);
+     setLoggedIn(false);
+     history('/sign-in');
+   }
 
   return (
   <div className="page__container">
     <CurrentUserContext.Provider value={currentUser}>
       <Header 
-      onLogout={handleLogout}
-      isLoggedIn={isLoggedIn}
-      isProfileEmail={isProfileEmail}
+      onSignOut={handleSignOut}
+      userEmail={data.email}
+      loggedIn={loggedIn}
       />
       <Routes>
         <Route path="/mesto" element={

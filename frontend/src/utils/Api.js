@@ -5,6 +5,7 @@ class Api {
     }
 
     _getOriginalResponse(res) {
+        console.log(res)
         if (res.ok) {
             return res.json();
 
@@ -16,9 +17,7 @@ class Api {
         return fetch(this._baseUrl + '/cards', {
             headers: this._headers
         })
-            .then(res => { 
-                console.log(res)
-                return this._getOriginalResponse(res) });
+            .then(res => { return this._getOriginalResponse(res) });
 
     }
 
@@ -37,9 +36,7 @@ class Api {
                 name, about
             })
         })
-            .then(res => { 
-                console.log(res)
-                return this._getOriginalResponse(res) })
+            .then(res => { return this._getOriginalResponse(res) })
     }
 
     addCard(name, link) {
@@ -50,9 +47,7 @@ class Api {
                 name, link
             })
         })
-            .then(res => { 
-                console.log(res)
-                return this._getOriginalResponse(res) })
+            .then(res => { return this._getOriginalResponse(res) })
     }
 
     setUserAvatar({ avatar }) {
@@ -63,9 +58,7 @@ class Api {
                 avatar
             })
         })
-            .then(res => { 
-                console.log(res)
-                return this._getOriginalResponse(res) })
+            .then(res => { return this._getOriginalResponse(res) })
     }
 
     deleteCard(id) {
@@ -73,9 +66,7 @@ class Api {
             method: 'DELETE',
             headers: this._headers,
         })
-            .then(res => { 
-                console.log(res)
-                return this._getOriginalResponse(res) })
+            .then(res => { return this._getOriginalResponse(res) })
     }
 
     changeLikeCardStatus(id, status) {
@@ -83,9 +74,7 @@ class Api {
             method: status ? 'PUT' : 'DELETE',
             headers: this._headers,
         })
-            .then(res => { r
-                console.log(res)
-                return this._getOriginalResponse(res) })
+            .then(res => { return this._getOriginalResponse(res) })
     }
 }
 

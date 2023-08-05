@@ -21,6 +21,7 @@ export const useFormWithValidation = () => {
   
     const resetFrom = useCallback(
       (newValues = {}, newErrors = {}, newIsValid = false, newIsValidInputs = {}) => {
+        console.log(newValues, newErrors, newIsValid, newIsValidInputs)
         setValues(newValues);
         setErrors(newErrors);
         setIsValid(newIsValid);

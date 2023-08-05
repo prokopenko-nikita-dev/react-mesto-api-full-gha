@@ -1,6 +1,0 @@
-@media (max-width: 633px) {
-    .header_mobile {
-      flex-direction: column-reverse;
-      padding-top: 40px;
-    }
-  }

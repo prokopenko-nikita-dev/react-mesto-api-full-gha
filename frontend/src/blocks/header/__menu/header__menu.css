@@ -1,0 +1,16 @@
+@media screen and (max-width: 767px) {
+    .header__menu {
+      position: fixed;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, .9);
+      border-bottom: 1px solid rgb(84, 84, 84, .7);
+      z-index: 1;
+      transition: all 0.3s ease 0s;
+    }
+  
+    .header__menu.active {
+      top: 0;
+    }
+  }

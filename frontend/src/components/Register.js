@@ -35,6 +35,7 @@ const Register = ({ onRegister }) => {
     onRegister(values)
       .then(resetFrom())
       .catch(err => {
+        console.log("пошел в жопу")
         console.log(err.message || 'Что то пошло не так')
       })
   }

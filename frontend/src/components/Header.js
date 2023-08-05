@@ -18,13 +18,19 @@ const Header = (props) => {
     setIsActive(!isActive)
   }
 
+  console.log(userEmail)
   return (
     <header className="header">
       <div className="header__logo"></div>
       {loggedIn
         ? (<>
-          <button type="button" className={`header__burger button ${isActive ? "active" : ""}`}
- onClick={handleButton}>
+          <button
+            type="button"
+            className={`header__burger button 
+        ${isActive
+                ? "active"
+                : ""}`}
+            onClick={handleButton}>
             <span></span>
           </button>
           <nav
