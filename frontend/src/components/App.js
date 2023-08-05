@@ -100,16 +100,6 @@ function App() {
       .finally(() => closeAllPopups())
   }
 
-  useEffect(() => {
-    api
-      .getUser()
-      .then((profileUserInfo) => {
-        console.log(profileUserInfo)
-        setCurrentUser(profileUserInfo)
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
   const [cards, setCards] = useState([]);
 
 
@@ -150,6 +140,13 @@ function App() {
       .getInitialCards()
       .then((cards) => {
         setCards(cards);
+      })
+      .catch((error) => console.log(error));
+      api
+      .getUser()
+      .then((profileUserInfo) => {
+        console.log(profileUserInfo)
+        setCurrentUser(profileUserInfo)
       })
       .catch((error) => console.log(error));
   }, [loggedIn]);
@@ -215,6 +212,7 @@ function App() {
           setIsSuccess(true);
           setLoggedIn(true);
           localStorage.setItem('jwt', res.token);
+          api.setAuthorization(res.token);
         };
       })
       .then(tokenCheck)

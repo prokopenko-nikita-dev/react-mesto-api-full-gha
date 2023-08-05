@@ -24,11 +24,12 @@ const corsOption = {
   // preflightContinue: true,
 };
 
-const corsOptions1 ={
-  origin:'*', 
-  credentials:true,            //access-control-allow-credentials:true
-  optionSuccessStatus:200,
-}
+const corsOptions1 = {
+  origin: '*',
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+
 const app = express();
 app.use(cors(corsOptions1));
 const limiter = rateLimit({
@@ -42,6 +43,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 app.use('/signup', signup);
 app.use('/signin', signin);
 
@@ -49,12 +56,6 @@ app.use(auth);
 
 app.use('/users', users);
 app.use('/cards', cards);
-
-app.get('/crash-test', () => {
-  setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
-  }, 0);
-});
 
 app.use('/*', () => {
   throw new NotFoundError('Страница не найдена');

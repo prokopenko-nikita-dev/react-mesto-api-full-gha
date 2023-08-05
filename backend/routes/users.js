@@ -6,14 +6,14 @@ const router = express.Router();
 const {
   createUser,
   getUsers,
+  getAllUsers,
   findUserById,
   getUserInfo,
   updateUserInfo,
   updateUserAvatar,
 } = require('../controllers/users');
 
-router.get('/', createUser);
-router.post('/', createUser);
+router.get('/users', getAllUsers);
 router.get('/me', getUsers);
 //router.get('/me', getUserInfo);
 router.get('/:userId', celebrate({

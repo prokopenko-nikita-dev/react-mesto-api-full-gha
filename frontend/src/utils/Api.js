@@ -4,6 +4,10 @@ class Api {
         this._headers = options.headers
     }
 
+    setAuthorization(token) {
+        this._headers['Authorization'] = `Bearer ${token}`;
+    }
+
     _getOriginalResponse(res) {
         console.log(res)
         if (res.ok) {

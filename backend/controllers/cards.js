@@ -18,11 +18,10 @@ const createCard = (req, res, next) => {
 const findCards = (req, res) => {
   Card.find({})
     .then((cards) => {
-      console.log(cards)
       res.send(cards);
     })
     .catch((err) => {
-      customError(err, req, res);
+      customError(err, req, res, next);
     });
 };
 

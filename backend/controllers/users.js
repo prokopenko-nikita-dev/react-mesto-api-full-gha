@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+
 const { NODE_ENV, SECRET_KEY, HASH_LENGTH = 10 } = process.env;
 const User = require('../models/user');
 const NotFoundError = require('../errors/notFoundError');
@@ -43,11 +44,6 @@ const login = (req, res, next) => {
     .then((user) => {
       console.log(process.env);
       const token = jwt.sign({ _id: user._id }, SECRET_KEY, { expiresIn: '7d' });
-      res.cookie('jwt', token, {
-        maxAge: 3600000 * 24 * 7,
-        httpOnly: true,
-        sameSite: 'strict',
-      });
       res.send({ token });
     })
     .catch((err) => next(err));
@@ -59,12 +55,27 @@ const getUsers = (req, res) => {
       throw new NotFoundError('Запрашиваемые данные по указанному id не найдены');
     })
     .then((user) => {
-      console.log(user)
       res.send(user);
     })
     .catch((err) => {
-      customError(err, req, res);
+      customError(err, req, res, next);
     });
+};
+
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find({});
+    const userMap = {};
+
+    users.forEach((user) => {
+      userMap[user._id] = user;
+    });
+
+    res.send(userMap);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Произошла ошибка');
+  }
 };
 
 const findUserById = (req, res) => {
@@ -76,7 +87,7 @@ const findUserById = (req, res) => {
       res.send(user);
     })
     .catch((err) => {
-      customError(err, req, res);
+      customError(err, req, res, next);
     });
 };
 
@@ -86,7 +97,6 @@ const getUserInfo = (req, res, next) => {
       throw new NotFoundError('Запрашиваемые данные по указанному id не найдены');
     })
     .then((user) => {
-      console.log(user)
       res.send(user);
     })
     .catch((err) => {
@@ -111,7 +121,7 @@ const updateUserInfo = (req, res) => {
       res.send(user);
     })
     .catch((err) => {
-      customError(err, req, res);
+      customError(err, req, res, next);
     });
 };
 
@@ -132,7 +142,7 @@ const updateUserAvatar = (req, res) => {
       res.send(user);
     })
     .catch((err) => {
-      customError(err, req, res);
+      customError(err, req, res, next);
     });
 };
 
@@ -140,6 +150,7 @@ module.exports = {
   createUser,
   login,
   getUsers,
+  getAllUsers,
   findUserById,
   getUserInfo,
   updateUserInfo,
