@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "express-winston": "^4.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.46.0"
   }
 }
