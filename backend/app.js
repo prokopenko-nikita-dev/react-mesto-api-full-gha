@@ -15,6 +15,7 @@ const cards = require('./routes/cards');
 const NotFoundError = require('./errors/notFoundError');
 const errorHandler = require('./middlewares/error-handler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { SERVER_PORT, DB } = require('./utils/config');
 
 const { PORT = 3000, BASE_PATH } = process.env;
 

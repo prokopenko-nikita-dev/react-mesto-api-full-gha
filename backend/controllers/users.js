@@ -1,7 +1,8 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const { NODE_ENV, SECRET_KEY, HASH_LENGTH = 10 } = process.env;
+const { NODE_ENV, JWT_SECRET, HASH_LENGTH = 10 } = process.env;
+const { SERVER_PORT, DB } = require('../utils/config');
 const User = require('../models/user');
 const NotFoundError = require('../errors/notFoundError');
 const { customError } = require('../errors/customError');
@@ -38,12 +39,12 @@ const createUser = (req, res, next) => {
 
 const login = (req, res, next) => {
   const { email, password } = req.body;
-  console.log(SECRET_KEY);
+  const JWT_SECRET = process.env.JWT_SECRET || SECRET_STRING;
 
   return User.findUserByCredentials(email, password)
     .then((user) => {
       console.log(process.env);
-      const token = jwt.sign({ _id: user._id }, SECRET_KEY, { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
       res.send({ token });
     })
     .catch((err) => next(err));
@@ -73,8 +74,7 @@ const getAllUsers = async (req, res) => {
 
     res.send(userMap);
   } catch (err) {
-    console.error(err);
-    res.status(500).send('Произошла ошибка');
+    customError(err, req, res, next);
   }
 };
 
